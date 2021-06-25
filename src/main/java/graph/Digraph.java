@@ -27,7 +27,8 @@ public class Digraph {
         this.arrayOfAdjacentLists = new AdjacentList[verticesQuantity];
     }
 
-    public void insert(int initialVertex, int finalVertex, int weight) throws Exception {
+    public void insert(int initialVertex, int finalVertex, int weight) throws RepeatedVertexException {
+
         if (this.arrayOfAdjacentLists[initialVertex] == null)
             this.arrayOfAdjacentLists[initialVertex] = new AdjacentList();
         else if (this.arrayOfAdjacentLists[initialVertex].hasValue(finalVertex))
