@@ -1,5 +1,5 @@
 import graph.Digraph;
-import graph.exceptions.RepeatedVertexException;
+import graph.exceptions.RepeatedEdgeException;
 import org.junit.Test;
 
 public class DigraphTest {
@@ -19,7 +19,7 @@ public class DigraphTest {
         dg.print();
     }
 
-    @Test(expected = RepeatedVertexException.class)
+    @Test(expected = RepeatedEdgeException.class)
     public void testaInsercaoRepetidaNoDigrafo() throws Exception {
         Digraph dg = new Digraph(10);
         dg.insert(0, 1, 0);

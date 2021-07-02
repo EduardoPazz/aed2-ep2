@@ -1,10 +1,10 @@
 package graph;
 
-import graph.exceptions.RepeatedVertexException;
+import graph.exceptions.RepeatedEdgeException;
 import graph.linked_list.AdjacentList;
 
 public class Digraph {
-    private final int verticesMaximumQuantity;
+    private final int vertexMaxValue;
     private int arcsQuantity;
 
     /*
@@ -20,33 +20,52 @@ public class Digraph {
     * Se determinado índice guarda uma lista de adjacência, essa lista de adjacência representa
     * todos os outros vértice os quais o índice em questão possui um arco conectando-os.
     * */
+
     private final AdjacentList[] arrayOfAdjacentLists;
 
-    public Digraph(int verticesQuantity) {
-        this.verticesMaximumQuantity = verticesQuantity;
-        this.arrayOfAdjacentLists = new AdjacentList[verticesQuantity];
+    /**
+     * Construtor da classe Digraph. Popula os atributos vertexMaxValue e inicializa o array de listas
+     * de adjascência
+     * @param vertexMaxValue o valor máximo de um vértice. Na prática, esse valor representa
+     *                         o intervalo [0, vertexMaxValue] que podemos ter de índices no
+     *                         array de listas de adjascências. Não representa a quantidade máxima
+     *                         de vértices que o digrafo aceita
+     * */
+    public Digraph(int vertexMaxValue) {
+        this.vertexMaxValue = vertexMaxValue;
+        this.arrayOfAdjacentLists = new AdjacentList[vertexMaxValue];
     }
 
-    public void insert(int initialVertex, int finalVertex, int weight) throws RepeatedVertexException {
+    /**
+     * Método de inserção de um arco no digrafo.
+     * @param initialVertex o vértice de saída do arco
+     * @param finalVertex o vértice de entrada do arco
+     * @param weight o peso do arco
+     * @throws RepeatedEdgeException Caso o arco já exista, lança essa exceção
+     * */
+    public void insert(int initialVertex, int finalVertex, int weight) throws RepeatedEdgeException {
 
         if (this.arrayOfAdjacentLists[initialVertex] == null)
             this.arrayOfAdjacentLists[initialVertex] = new AdjacentList();
+
         else if (this.arrayOfAdjacentLists[initialVertex].hasValue(finalVertex))
-            throw new RepeatedVertexException(initialVertex, finalVertex);
+            throw new RepeatedEdgeException(initialVertex, finalVertex);
 
         this.arrayOfAdjacentLists[initialVertex].add(finalVertex, weight);
 
         this.arcsQuantity++;
     }
 
+    /**
+     * Printa o digrafo na saída padrão
+     * */
     public void print() {
         System.out.printf("Quantidade máxima de vértices:\t%d\nQuantidade de arcos:\t%d\n",
-                this.verticesMaximumQuantity,
+                this.vertexMaxValue,
                 this.arcsQuantity);
 
-        for (int vertexValue = 0; vertexValue < this.arrayOfAdjacentLists.length; vertexValue++) {
+        for (int vertexValue = 0; vertexValue < this.arrayOfAdjacentLists.length; vertexValue++)
             if (this.arrayOfAdjacentLists[vertexValue] != null)
                 System.out.printf("%d: %s\n", vertexValue, this.arrayOfAdjacentLists[vertexValue].toString());
-        }
     }
 }

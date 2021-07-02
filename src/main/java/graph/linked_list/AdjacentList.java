@@ -19,9 +19,13 @@ public class AdjacentList {
         return false;
     }
 
+    /**
+     * Método que adiciona um vértice na lista de adjacência
+     * @param value o valor do vértice
+     * @param weight o peso do arco
+     * */
     public void add(int value, int weight) {
         Node newNode = new Node(value, weight);
-
 
         if (this.headNode == null) this.headNode = newNode;
         else {
@@ -31,7 +35,9 @@ public class AdjacentList {
         }
     }
 
-
+    /**
+     * Sobreescritura do método toString para facilitar o print do digrafo
+     * */
     @Override
     public String toString() {
         StringJoiner sj = new StringJoiner(" - ", "", "");
