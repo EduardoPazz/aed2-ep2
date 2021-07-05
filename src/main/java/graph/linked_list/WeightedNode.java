@@ -9,7 +9,7 @@ public class WeightedNode extends Node {
 
     /**
      * O construtor da classe Node. Apenas popula os atributos
-     * @param value o valor a ser armazenado no vértice atributo de Node
+     * @param v o vértice a ser armazenado
      * @param weight o peso do arco que tem fim nesse vértice
      * */
     public WeightedNode(Vertex v, int weight) {
