@@ -46,12 +46,12 @@ public class Digraph {
     public void insert(int initialVertex, int finalVertex, int weight) throws RepeatedEdgeException {
 
         if (this.arrayOfAdjacentLists[initialVertex] == null)
-            this.arrayOfAdjacentLists[initialVertex] = new AdjacentList();
+            this.arrayOfAdjacentLists[initialVertex] = new AdjacentList(initialVertex, finalVertex, weight);
 
         else if (this.arrayOfAdjacentLists[initialVertex].hasValue(finalVertex))
             throw new RepeatedEdgeException(initialVertex, finalVertex);
 
-        this.arrayOfAdjacentLists[initialVertex].add(finalVertex, weight);
+        else this.arrayOfAdjacentLists[initialVertex].add(finalVertex, weight);
 
         this.arcsQuantity++;
     }
@@ -64,8 +64,25 @@ public class Digraph {
                 this.vertexMaxValue,
                 this.arcsQuantity);
 
-        for (int vertexValue = 0; vertexValue < this.arrayOfAdjacentLists.length; vertexValue++)
-            if (this.arrayOfAdjacentLists[vertexValue] != null)
-                System.out.printf("%d: %s\n", vertexValue, this.arrayOfAdjacentLists[vertexValue].toString());
+        for (AdjacentList adjacentList : this.arrayOfAdjacentLists)
+            if (adjacentList != null) System.out.println(adjacentList.toString());
     }
+
+    /**
+     * Verifica se o inteiro passado como parâmetro é de um vértice fonte, isto é, se há algum arco
+     * que sai desse vértice. A lógica é a seguinte: um vértice pode existir no grafo mas não ser um
+     * índice do array de listas de adjacência. Isso implicaria que não há nenhum arco que sai
+     * desse vértice
+     * @param source inteiro de um vértice a ser testado
+     * @return um boolean representado se o inteiro é de um vértice fonte ou não
+     * */
+    public boolean hasSourceVertex(int source) {
+        return (source >= 0 && source <= this.vertexMaxValue)
+            && (this.arrayOfAdjacentLists[source] != null);
+    }
+
+
+    /*
+    * v.p ponteiro para o vértice predecessor
+    * */
 }

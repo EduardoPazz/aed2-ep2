@@ -5,6 +5,11 @@ import java.util.StringJoiner;
 public class AdjacentList {
     private Node headNode;
 
+    public AdjacentList(int initialVertex, int finalVertex, int weight) {
+        this.headNode = new Node(initialVertex);
+        this.headNode.setNextNode(new WeightedNode(finalVertex, weight));
+    }
+
     /**
      * Checa se a lista em questão já possui um elemento
      * @param searchedVertex valor buscado
@@ -25,14 +30,11 @@ public class AdjacentList {
      * @param weight o peso do arco
      * */
     public void add(int value, int weight) {
-        Node newNode = new Node(value, weight);
+        WeightedNode newNode = new WeightedNode(value, weight);
 
-        if (this.headNode == null) this.headNode = newNode;
-        else {
-            Node lastNode = this.headNode;
-            while (lastNode.getNextNode() != null) lastNode = lastNode.getNextNode();
-            lastNode.setNextNode(newNode);
-        }
+        Node lastNode = this.headNode;
+        while (lastNode.getNextNode() != null) lastNode = lastNode.getNextNode();
+        lastNode.setNextNode(newNode);
     }
 
     /**
@@ -41,11 +43,11 @@ public class AdjacentList {
     @Override
     public String toString() {
         StringJoiner sj = new StringJoiner(" - ", "", "");
-        Node actualNode = this.headNode;
+        Node actualNode = this.headNode.getNextNode();
         while (actualNode != null) {
             sj.add(String.valueOf(actualNode.getValue()));
             actualNode = actualNode.getNextNode();
         }
-        return sj.toString();
+        return String.format("%d: %s", this.headNode.getValue(), sj.toString());
     }
 }
