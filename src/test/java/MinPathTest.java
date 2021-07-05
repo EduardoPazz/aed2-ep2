@@ -1,6 +1,7 @@
 import graph.Digraph;
 import graph.MinPath;
 import graph.exceptions.NoVertexFoundException;
+import graph.exceptions.NoVertexFoundInAdjacentListException;
 import graph.exceptions.NonSourceVertexException;
 import graph.exceptions.RepeatedEdgeException;
 import org.junit.Assert;
@@ -24,5 +25,24 @@ public class MinPathTest {
         MinPath.initializeSingleSource(dg, 1);
 
         Assert.assertEquals(0, dg.getVertex(1).getDistance());
+    }
+
+    @Test
+    public void testaORelaxamento()
+            throws RepeatedEdgeException, NoVertexFoundException, NonSourceVertexException, NoVertexFoundInAdjacentListException {
+
+        Digraph dg = new Digraph(5);
+        dg.insert(0, 1, 5);
+        dg.insert(1, 2, 5);
+        MinPath.initializeSingleSource(dg, 0);
+        MinPath.relax(dg, 0, 1);
+        MinPath.relax(dg, 1, 2);
+
+        Assert.assertNull(dg.getVertex(0).getPreviousVertex());
+        Assert.assertEquals(dg.getVertex(0).getDistance(), 0);
+        Assert.assertEquals(dg.getVertex(1).getDistance(), 5);
+        Assert.assertEquals(dg.getVertex(1).getPreviousVertex(), dg.getVertex(0));
+        Assert.assertEquals(dg.getVertex(2).getDistance(), 10);
+        Assert.assertEquals(dg.getVertex(2).getPreviousVertex(), dg.getVertex(1));
     }
 }
