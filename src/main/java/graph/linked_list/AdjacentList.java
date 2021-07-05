@@ -1,13 +1,30 @@
 package graph.linked_list;
 
+import graph.Vertex;
+import graph.exceptions.NoVertexFoundInAdjacentListException;
+
 import java.util.StringJoiner;
 
 public class AdjacentList {
-    private Node headNode;
+    private final Node headNode;
 
-    public AdjacentList(int initialVertex, int finalVertex, int weight) {
-        this.headNode = new Node(initialVertex);
-        this.headNode.setNextNode(new WeightedNode(finalVertex, weight));
+    /**
+     * Construtor que aceita dois vértices de uma vez só
+     * @param initialVertexNode valor do vértice cabeça
+     * @param finalVertexNode valor do vértice seguinte
+     * @param weight o peso do arco entre esses vértice
+     * */
+    public AdjacentList(Node initialVertexNode, WeightedNode finalVertexNode) {
+        this.headNode = initialVertexNode;
+        this.headNode.setNextNode(finalVertexNode);
+    }
+
+    /**
+     * Construtor que aceita um vértices só
+     * @param vertexValue valor do vértice cabeça
+     * */
+    public AdjacentList(Node headNode) {
+        this.headNode = headNode;
     }
 
     /**
@@ -26,11 +43,10 @@ public class AdjacentList {
 
     /**
      * Método que adiciona um vértice na lista de adjacência
-     * @param value o valor do vértice
-     * @param weight o peso do arco
-     * */
-    public void add(int value, int weight) {
-        WeightedNode newNode = new WeightedNode(value, weight);
+     * @param vertexValue o valor do vértice
+     * @param weight o peso do arco */
+    public void add(Vertex vertexValue, int weight) {
+        WeightedNode newNode = new WeightedNode(vertexValue, weight);
 
         Node lastNode = this.headNode;
         while (lastNode.getNextNode() != null) lastNode = lastNode.getNextNode();
@@ -49,5 +65,32 @@ public class AdjacentList {
             actualNode = actualNode.getNextNode();
         }
         return String.format("%d: %s", this.headNode.getValue(), sj.toString());
+    }
+
+    /**
+     * Getter do Vertex do Node cabeça desta lista de adjascência
+     * @return o Vertex do Node cabeça
+     * */
+    public Vertex getSourceVertex() {
+        return this.headNode.getVertex();
+    }
+
+    /**
+     * Método que busca o peso do arco do vértice fonte até o vértice detentor do valor passado
+     * como parâmetro
+     * @param finalVertexValue o valor inteiro do vértice de entrada do arco em questão
+     * @return o peso do arco
+     * @throws NoVertexFoundInAdjacentListException caso o vértice não exista nesta lista de adjacência
+     * */
+    public int getWeight(int finalVertexValue) throws NoVertexFoundInAdjacentListException {
+        WeightedNode actualNode = (WeightedNode) this.headNode.getNextNode();
+        while (actualNode != null) {
+            if (actualNode.getValue() == finalVertexValue)
+                return actualNode.getWeight();
+
+            actualNode = (WeightedNode) actualNode.getNextNode();
+        }
+
+        throw new NoVertexFoundInAdjacentListException(this.headNode.getValue(), finalVertexValue);
     }
 }

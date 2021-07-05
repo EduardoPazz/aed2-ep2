@@ -1,5 +1,6 @@
 package graph;
 
+import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.RepeatedEdgeException;
 
 import java.util.Random;
@@ -18,7 +19,9 @@ public class DigraphsGenerator {
      * @param maxWeight o peso máximo que um arco pode ter
      * @throws RepeatedEdgeException
      * */
-    public static Digraph genDigraph(int maxValue, double probability, int maxWeight) throws RepeatedEdgeException {
+    public static Digraph genDigraph(int maxValue, double probability, int maxWeight)
+            throws RepeatedEdgeException, NoVertexFoundException {
+
         Condition condition = (int i, int j, double p) -> (i != j) && (Math.random() <= p);
         return genGenericDigraph(maxValue, probability, maxWeight, condition);
     }
@@ -31,7 +34,9 @@ public class DigraphsGenerator {
      * @param maxWeight o peso máximo que um arco pode ter
      * @throws RepeatedEdgeException
      * */
-    public static Digraph genDAG(int maxValue, double probability, int maxWeight) throws RepeatedEdgeException {
+    public static Digraph genDAG(int maxValue, double probability, int maxWeight)
+            throws RepeatedEdgeException, NoVertexFoundException {
+
         Condition condition = (int i, int j, double p) -> (i < j) && (Math.random() <= p);
         return genGenericDigraph(maxValue, probability, maxWeight, condition);
     }
@@ -44,7 +49,9 @@ public class DigraphsGenerator {
      * @param condition método anônimo que testa se um arco irá ser adicionado
      * @throws RepeatedEdgeException
      * */
-    private static Digraph genGenericDigraph(int maxValue, double probability, int maxWeight, Condition condition) throws RepeatedEdgeException {
+    private static Digraph genGenericDigraph(int maxValue, double probability, int maxWeight, Condition condition)
+            throws RepeatedEdgeException, NoVertexFoundException {
+
         Digraph dg = new Digraph(maxValue);
 
         for (int i = 0; i <= maxValue; i++)

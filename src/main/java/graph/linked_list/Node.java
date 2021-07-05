@@ -9,10 +9,10 @@ public class Node {
 
     /**
      * O construtor da classe Node. Apenas popula os atributos
-     * @param value o valor a ser armazenado no vértice atributo de Node
+     * @param v o vértice a ser armazenado
      * */
-    public Node(int value) {
-        this.vertex = new Vertex(value);
+    public Node(Vertex v) {
+        this.vertex = v;
     }
 
     /**
@@ -38,4 +38,13 @@ public class Node {
     public void setNextNode(Node nextNode) {
         this.nextNode = nextNode;
     }
+
+    /**
+     * Getter do Vertex deste Node
+     * @return o Vertex
+     * */
+    public Vertex getVertex() {
+        return this.vertex;
+    }
+
 }

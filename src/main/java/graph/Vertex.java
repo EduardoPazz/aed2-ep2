@@ -40,4 +40,21 @@ public class Vertex {
     public Vertex getPreviousVertex() {
         return this.previousVertex;
     }
+
+    /**
+     * Setter da distância deste Vertex até o Vertex fonte
+     * @param distance um inteiro que representa a distância
+     * */
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+
+    /**
+     * Setter do Vertex anterior a este Vertex no algoritmo do caminho mínimo
+     * @param previousVertex o Vertex anterior
+     * */
+    public void setPrevious(Vertex previousVertex) {
+        this.previousVertex = previousVertex;
+    }
 }
