@@ -47,10 +47,10 @@ public class DigraphsGenerator {
     private static Digraph genGenericDigraph(int maxValue, double probability, int maxWeight, Condition condition) throws RepeatedEdgeException {
         Digraph dg = new Digraph(maxValue);
 
-        for (int i = 0; i < maxValue; i++)
-            for (int j = 0; j < maxValue; j++)
-                if (condition.test(i, j, probability)) dg.insert(i, j, new Random().nextInt(maxWeight+1));
-
+        for (int i = 0; i <= maxValue; i++)
+            for (int j = 0; j <= maxValue; j++)
+                if (condition.test(i, j, probability)) 
+                    dg.insert(i, j, new Random().nextInt(maxWeight+1));
 
         return dg;
     }
