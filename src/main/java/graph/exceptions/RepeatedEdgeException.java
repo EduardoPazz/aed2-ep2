@@ -1,6 +1,6 @@
 package graph.exceptions;
 
-public class RepeatedEdgeException extends Exception {
+public class RepeatedEdgeException extends IllegalArgumentException {
 
     /**
      * Construtor desta classe de exceção. Usa os parâmetros para formatar uma mensagem mais explicativa
