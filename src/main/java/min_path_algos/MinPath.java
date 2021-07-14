@@ -1,5 +1,7 @@
-package graph;
+package min_path_algos;
 
+import graph.Digraph;
+import graph.Vertex;
 import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.NoVertexFoundInAdjacentListException;
 import graph.exceptions.NonSourceVertexException;
