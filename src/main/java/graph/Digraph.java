@@ -78,7 +78,7 @@ public class Digraph {
                 this.arcsQuantity);
 
         for (AdjacentList adjacentList : this.arrayOfAdjacentLists)
-            if (adjacentList != null) System.out.println(adjacentList.toString());
+            if (adjacentList != null) System.out.println(adjacentList);
     }
 
     /**
@@ -110,8 +110,8 @@ public class Digraph {
     /**
      * Obtem o peso entre dois vértices
      *
-     * @param initialVertex
-     * @param finalVertex
+     * @param initialVertex o vertice cujo o vértice sai
+     * @param finalVertex o vértice cujo vértice entra
      * @return um inteiro representando o peso entre os vertices
      * @throws NoVertexFoundInAdjacentListException, caso o vértice final não exista na lista de adjacência do vértice inicial
      */
@@ -126,7 +126,7 @@ public class Digraph {
      * @return o vértice buscado
      * @throws NoVertexFoundException caso o vértice não exista no grafo
      */
-    public Vertex getVertex(int vertexValue) throws NoVertexFoundException {
+    public Vertex getVertex(int vertexValue) {
         try {
             return this.arrayOfAdjacentLists[vertexValue].getSourceVertex();
         } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
@@ -136,5 +136,13 @@ public class Digraph {
 
     public int getVertexMaxValue() {
         return this.vertexMaxValue;
+    }
+
+    public AdjacentList getAdjacentList(int vertexValue) {
+        try {
+            return this.arrayOfAdjacentLists[vertexValue];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new NoVertexFoundException(vertexValue);
+        }
     }
 }

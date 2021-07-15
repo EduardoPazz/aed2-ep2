@@ -34,7 +34,7 @@ public class VertexMinPriorityQueue {
     /**
      * Aplica o bubbleDown para cada vértice presente no array do heap
      * */
-    private void minHeapfy() {
+    public void minHeapfy() {
         for (int vertexPosition = this.verticesHeap.length - 1; vertexPosition >= 0; vertexPosition--)
             bubbleDown(vertexPosition);
     }
@@ -48,16 +48,18 @@ public class VertexMinPriorityQueue {
         int rightChildPosition = this.getRightChildPositionFrom(vertexPosition);
         int leftChildPosition = this.getLeftChildPositionFrom(vertexPosition);
 
-        if ((leftChildPosition >= this.verticesHeap.length)
-                || (this.verticesHeap[leftChildPosition] == null))
-            return;
+        if (leftChildPosition >= this.verticesHeap.length) return;
 
         int lowestChildPosition = leftChildPosition;
         if ((rightChildPosition < this.verticesHeap.length)
                 && (this.verticesHeap[rightChildPosition] != null)
-                && (this.verticesHeap[leftChildPosition].getDistance()
-                > this.verticesHeap[rightChildPosition].getDistance()))
+                && ((this.verticesHeap[leftChildPosition] == null)
+                    || (this.verticesHeap[leftChildPosition].getDistance()
+                        > this.verticesHeap[rightChildPosition].getDistance())))
+
             lowestChildPosition = rightChildPosition;
+
+        if (this.verticesHeap[lowestChildPosition] == null) return;
 
         if ((this.verticesHeap[vertexPosition] == null)
                 || (this.verticesHeap[vertexPosition].getDistance()
@@ -135,5 +137,10 @@ public class VertexMinPriorityQueue {
         }
 
         return sj.toString();
+    }
+
+    public boolean isNotEmpty() {
+        int firstPosition = 0;
+        return (this.verticesHeap[firstPosition] != null);
     }
 }

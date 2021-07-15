@@ -63,7 +63,7 @@ public class AdjacentList {
             sj.add(String.valueOf(actualNode.getValue()));
             actualNode = actualNode.getNextNode();
         }
-        return String.format("%d: %s", this.headNode.getValue(), sj.toString());
+        return String.format("%d: %s", this.headNode.getValue(), sj);
     }
 
     /**
@@ -91,5 +91,9 @@ public class AdjacentList {
         }
 
         throw new NoVertexFoundInAdjacentListException(this.headNode.getValue(), finalVertexValue);
+    }
+
+    public Node getHeadNode() {
+        return this.headNode;
     }
 }

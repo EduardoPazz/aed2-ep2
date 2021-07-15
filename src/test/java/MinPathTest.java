@@ -4,6 +4,7 @@ import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.NoVertexFoundInAdjacentListException;
 import graph.exceptions.NonSourceVertexException;
 import graph.exceptions.RepeatedEdgeException;
+import min_path_algos.dijkstra.Dijkstra;
 import min_path_algos.dijkstra.VertexMinPriorityQueue;
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,5 +69,36 @@ public class MinPathTest {
         System.out.println(minQueue.extractMin().getDistance());
         System.out.println("-------------------");
         System.out.println(minQueue);
+    }
+
+    @Test
+    public void testaDijkstra() {
+        Digraph dg = new Digraph(5);
+        /*
+         * s 0
+         * t 1
+         * x 2
+         * y 3
+         * z 4
+         * */
+
+        dg.insert(0, 1, 10);
+        dg.insert(0, 3, 5);
+        dg.insert(3, 1, 3);
+        dg.insert(1, 3, 2);
+        dg.insert(1, 2, 1);
+        dg.insert(3, 4, 2);
+        dg.insert(3, 2, 9);
+        dg.insert(4, 2, 6);
+        dg.insert(2, 4, 4);
+        dg.insert(4, 0, 7);
+
+//        dg.insert(1, 2, 1);
+//        dg.insert(1, 3, 10);
+//        dg.insert(2, 3, 1);
+
+        Dijkstra.apply(dg, 0);
+        dg.print();
+        MinPath.printMinPathReport(dg);
     }
 }
