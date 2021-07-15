@@ -1,6 +1,5 @@
 package graph;
-//comentario
-//2
+
 import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.NoVertexFoundInAdjacentListException;
 import graph.exceptions.NonSourceVertexException;

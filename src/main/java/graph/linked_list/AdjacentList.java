@@ -9,16 +9,6 @@ public class AdjacentList {
     private final Node headNode;
 
     /**
-     * Construtor que aceita dois vértices de uma vez só
-     * @param initialVertexNode valor do vértice cabeça
-     * @param finalVertexNode valor do vértice seguinte
-     * */
-    public AdjacentList(Node initialVertexNode, WeightedNode finalVertexNode) {
-        this.headNode = initialVertexNode;
-        this.headNode.setNextNode(finalVertexNode);
-    }
-
-    /**
      * Construtor da lista de adjacência
      * @param headNode o nó a ser armazenado
      * */
