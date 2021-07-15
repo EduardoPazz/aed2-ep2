@@ -50,17 +50,23 @@ public class MinPathTest {
 
     @Test
     public void testaAMinPriorityQueue() {
-        Digraph dg = new Digraph(10);
-        dg.insert(1, 2, 5);
-        dg.insert(1, 5, 5);
-        dg.insert(2, 3, 6);
-        dg.insert(2, 9, 6);
-        dg.insert(2, 7, 6);
-        dg.insert(3, 1, 1);
-        dg.insert(3, 7, 1);
-        dg.insert(5, 7, 1);
-        dg.insert(7, 2, 1);
+        Digraph dg = new Digraph(5);
+        dg.insert(5, 2, 5);
+        dg.insert(2, 1, 10);
 
-        System.out.println(new VertexMinPriorityQueue(dg).toString());
+        dg.getVertex(5).setDistance(0);
+        dg.getVertex(2).setDistance(5);
+        dg.getVertex(1).setDistance(15);
+
+        VertexMinPriorityQueue minQueue = new VertexMinPriorityQueue(dg);
+        System.out.println(minQueue);
+        System.out.println("-------------------");
+        System.out.println(minQueue.extractMin().getDistance());
+        System.out.println("-------------------");
+        System.out.println(minQueue);
+        System.out.println("-------------------");
+        System.out.println(minQueue.extractMin().getDistance());
+        System.out.println("-------------------");
+        System.out.println(minQueue);
     }
 }
