@@ -9,7 +9,7 @@ public class DepthFirstSearch {
 
     private static int timestamp;
 
-    public void depthFirstSearch(Digraph dg) {
+    public static void depthFirstSearch(Digraph dg) {
         for (AdjacentList adjacentList : dg.getArrayOfAdjacentLists()) {
             if (adjacentList == null) continue;
 
@@ -28,7 +28,7 @@ public class DepthFirstSearch {
         }
     }
 
-    private void depthFirstSearchVisit(Digraph dg, Vertex vertex) {
+    private static void depthFirstSearchVisit(Digraph dg, Vertex vertex) {
         vertex.setDiscoveredTimestamp(++timestamp);
         vertex.setColor(Color.GRAY);
 
