@@ -1,15 +1,25 @@
-package min_path_algos;
+package min_paths_algos;
 
 import graph.Digraph;
 import graph.Vertex;
+import graph.depth_first_search.Color;
 import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.NoVertexFoundInAdjacentListException;
 import graph.exceptions.NonSourceVertexException;
 import graph.linked_list.AdjacentList;
 
-public class MinPath {
+public class MinPaths {
 
     public static void initializeSingleSource(Digraph dg, int source) throws NonSourceVertexException {
+
+        for (AdjacentList adjacentList : dg.getArrayOfAdjacentLists()) {
+            if (adjacentList == null) continue;
+
+            Vertex vertex = adjacentList.getSourceVertex();
+            vertex.setDistance(Integer.MAX_VALUE);
+            vertex.setPrevious(null);
+        }
+
         Vertex sourceVertex = dg.getSourceVertex(source);
         sourceVertex.setDistance(0);
         sourceVertex.setPrevious(sourceVertex);

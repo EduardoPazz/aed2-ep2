@@ -1,15 +1,15 @@
 import graph.Digraph;
-import min_path_algos.MinPath;
+import min_paths_algos.MinPaths;
 import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.NoVertexFoundInAdjacentListException;
 import graph.exceptions.NonSourceVertexException;
 import graph.exceptions.RepeatedEdgeException;
-import min_path_algos.dijkstra.Dijkstra;
-import min_path_algos.dijkstra.VertexMinPriorityQueue;
+import min_paths_algos.dijkstra.Dijkstra;
+import min_paths_algos.dijkstra.VertexMinPriorityQueue;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class MinPathTest {
+public class MinPathsTest {
 
     @Test
     public void testaAInicializacaoDoVerticeFonte() throws RepeatedEdgeException, NonSourceVertexException, NoVertexFoundException {
@@ -24,7 +24,7 @@ public class MinPathTest {
         dg.insert(5, 7, 1);
         dg.insert(7, 2, 1);
 
-        MinPath.initializeSingleSource(dg, 1);
+        MinPaths.initializeSingleSource(dg, 1);
 
         Assert.assertEquals(0, dg.getVertex(1).getDistance());
     }
@@ -36,9 +36,9 @@ public class MinPathTest {
         Digraph dg = new Digraph(5);
         dg.insert(0, 1, 5);
         dg.insert(1, 2, 5);
-        MinPath.initializeSingleSource(dg, 0);
-        MinPath.relax(dg, 0, 1);
-        MinPath.relax(dg, 1, 2);
+        MinPaths.initializeSingleSource(dg, 0);
+        MinPaths.relax(dg, 0, 1);
+        MinPaths.relax(dg, 1, 2);
 
         Assert.assertNull(dg.getVertex(0).getPreviousVertex());
         Assert.assertEquals(dg.getVertex(0).getDistance(), 0);
@@ -99,6 +99,6 @@ public class MinPathTest {
 
         Dijkstra.apply(dg, 0);
         dg.print();
-        MinPath.printMinPathReport(dg);
+        MinPaths.printMinPathReport(dg);
     }
 }

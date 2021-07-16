@@ -1,5 +1,7 @@
 package graph;
 
+import graph.depth_first_search.Color;
+
 public class Vertex {
     private final int value;
 
@@ -8,6 +10,9 @@ public class Vertex {
     * */
     private int distance;
     private Vertex previousVertex;
+    private Color color;
+    private int discoveredTimestamp;
+    private int finishedTimestamp;
 
     /**
      * Construtor de um Vertex. Apenas popula o atributo value
@@ -56,5 +61,21 @@ public class Vertex {
      * */
     public void setPrevious(Vertex previousVertex) {
         this.previousVertex = previousVertex;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public boolean isColor(Color color) {
+        return (this.color.equals(color));
+    }
+
+    public void setDiscoveredTimestamp(int timestamp) {
+        this.discoveredTimestamp = timestamp;
+    }
+
+    public void setFinishedTimestamp(int timestamp) {
+        this.finishedTimestamp = timestamp;
     }
 }

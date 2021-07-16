@@ -1,4 +1,4 @@
-package min_path_algos.dijkstra;
+package min_paths_algos.dijkstra;
 
 import graph.Digraph;
 import graph.Vertex;

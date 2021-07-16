@@ -1,16 +1,16 @@
-package min_path_algos.dijkstra;
+package min_paths_algos.dijkstra;
 
 import graph.Digraph;
 import graph.Vertex;
 import graph.exceptions.NonSourceVertexException;
 import graph.linked_list.AdjacentList;
 import graph.linked_list.Node;
-import min_path_algos.MinPath;
+import min_paths_algos.MinPaths;
 
 public class Dijkstra {
     public static void apply(Digraph dg, int sourceVertexValue) throws NonSourceVertexException {
 
-        MinPath.initializeSingleSource(dg, sourceVertexValue);
+        MinPaths.initializeSingleSource(dg, sourceVertexValue);
 
         VertexMinPriorityQueue vertexMinPriorityQueue = new VertexMinPriorityQueue(dg);
 
@@ -24,7 +24,7 @@ public class Dijkstra {
 
             while (adjacentVertexNode != null) {
 
-                MinPath.relax(dg, minVertex, adjacentVertexNode.getVertex());
+                MinPaths.relax(dg, minVertex, adjacentVertexNode.getVertex());
                 adjacentVertexNode = adjacentVertexNode.getNextNode();
             }
 
