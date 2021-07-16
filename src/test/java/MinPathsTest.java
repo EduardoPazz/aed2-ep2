@@ -1,4 +1,5 @@
 import graph.Digraph;
+import min_paths_algos.DAGShortestPaths;
 import min_paths_algos.MinPaths;
 import graph.exceptions.NoVertexFoundException;
 import graph.exceptions.NoVertexFoundInAdjacentListException;
@@ -98,6 +99,35 @@ public class MinPathsTest {
 //        dg.insert(2, 3, 1);
 
         Dijkstra.apply(dg, 0);
+        dg.print();
+        MinPaths.printMinPathReport(dg);
+    }
+
+    @Test
+    public void testaDAGShortestPaths() {
+        Digraph dg = new Digraph(5);
+        /*
+         * r 5
+         * s 0
+         * t 1
+         * x 2
+         * y 3
+         * z 4
+         * */
+
+        dg.insert(5, 1, 3);
+        dg.insert(5, 0, 5);
+        dg.insert(0, 2, 6);
+        dg.insert(0, 1, 2);
+        dg.insert(1, 2, 7);
+        dg.insert(1, 3, 4);
+        dg.insert(1, 4, 2);
+        dg.insert(2, 3, -1);
+        dg.insert(2, 4, 1);
+        dg.insert(3, 4, -2);
+
+
+        DAGShortestPaths.apply(dg, 0);
         dg.print();
         MinPaths.printMinPathReport(dg);
     }

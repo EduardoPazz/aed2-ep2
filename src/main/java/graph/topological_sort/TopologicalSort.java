@@ -43,4 +43,8 @@ public class TopologicalSort {
             listOfVertices.add(vertex);
         }
     }
+
+    public Node getHeadNode() {
+        return listOfVertices.getHeadNode();
+    }
 }

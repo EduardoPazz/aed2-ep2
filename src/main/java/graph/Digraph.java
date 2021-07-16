@@ -137,7 +137,7 @@ public class Digraph {
         return this.vertexMaxValue;
     }
 
-    public AdjacentList getAdjacentList(int vertexValue) {
+    public AdjacentList getAdjacentListOf(int vertexValue) {
         try {
             return this.arrayOfAdjacentLists[vertexValue];
         } catch (ArrayIndexOutOfBoundsException e) {

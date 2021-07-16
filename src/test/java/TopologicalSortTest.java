@@ -1,5 +1,6 @@
 import graph.Digraph;
 import graph.topological_sort.TopologicalSort;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TopologicalSortTest {
@@ -16,5 +17,6 @@ public class TopologicalSortTest {
         TopologicalSort ts = new TopologicalSort(dg);
 
         System.out.println(ts);
+        Assert.assertEquals(ts.toString(), "1:6 - 2:5 - 3:4");
     }
 }

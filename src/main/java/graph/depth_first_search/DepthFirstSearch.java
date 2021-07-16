@@ -32,7 +32,7 @@ public class DepthFirstSearch {
         vertex.setDiscoveredTimestamp(++timestamp);
         vertex.setColor(Color.GRAY);
 
-        AdjacentList adjacentList = dg.getAdjacentList(vertex.getValue());
+        AdjacentList adjacentList = dg.getAdjacentListOf(vertex.getValue());
 
         Node adjacentNode = adjacentList.getHeadNode().getNextNode();
         while (adjacentNode != null) {

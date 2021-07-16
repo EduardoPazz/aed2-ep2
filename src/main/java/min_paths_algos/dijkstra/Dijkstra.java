@@ -18,7 +18,7 @@ public class Dijkstra {
 
             Vertex minVertex = vertexMinPriorityQueue.extractMin();
 
-            AdjacentList adjacentList = dg.getAdjacentList(minVertex.getValue());
+            AdjacentList adjacentList = dg.getAdjacentListOf(minVertex.getValue());
 
             Node adjacentVertexNode = adjacentList.getHeadNode().getNextNode();
 
