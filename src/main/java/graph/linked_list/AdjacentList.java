@@ -6,7 +6,13 @@ import graph.exceptions.NoVertexFoundInAdjacentListException;
 import java.util.StringJoiner;
 
 public class AdjacentList {
-    private final Node headNode;
+    protected Node headNode;
+
+
+    /**
+     * Construtor cru da lista de adjacência
+     * */
+    public AdjacentList() { }
 
     /**
      * Construtor da lista de adjacência
@@ -32,10 +38,10 @@ public class AdjacentList {
 
     /**
      * Método que adiciona um vértice na lista de adjacência
-     * @param vertexValue o valor do vértice
+     * @param vertex o valor do vértice
      * @param weight o peso do arco */
-    public void add(Vertex vertexValue, int weight) {
-        WeightedNode newNode = new WeightedNode(vertexValue, weight);
+    public void add(Vertex vertex, int weight) {
+        WeightedNode newNode = new WeightedNode(vertex, weight);
 
         Node lastNode = this.headNode;
         while (lastNode.getNextNode() != null) lastNode = lastNode.getNextNode();

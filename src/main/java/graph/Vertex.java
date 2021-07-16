@@ -78,4 +78,8 @@ public class Vertex {
     public void setFinishedTimestamp(int timestamp) {
         this.finishedTimestamp = timestamp;
     }
+
+    public int getFinishedTimestamp() {
+        return this.finishedTimestamp;
+    }
 }
