@@ -20,7 +20,6 @@ public class Vertex {
      * */
     public Vertex(int value) {
         this.value = value;
-        this.distance = Integer.MAX_VALUE;
     }
 
     /**

@@ -16,7 +16,11 @@ public class MinPaths {
             if (adjacentList == null) continue;
 
             Vertex vertex = adjacentList.getSourceVertex();
-            vertex.setDistance(Integer.MAX_VALUE);
+            /*
+            * A distância superestimada é Integer.MAX_VALUE / 2 para evitar overflows
+            * nas contas de relaxamento
+            * */
+            vertex.setDistance(Integer.MAX_VALUE / 2); //
             vertex.setPrevious(null);
         }
 
