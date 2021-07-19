@@ -18,11 +18,13 @@ public class Bellman_Ford {
         //o algoritmo faz |V| – 1 passagens pelas arestas do grafo
         for (int i = 0; i < arrayOfAdjacentList.length; i++) {
 
+            System.out.println("for de fora: " + i);
             //se a posição estiver vazia, próximo
             if (arrayOfAdjacentList[i] == null) continue;
 
             //iteração em cada lista de adjacencia
             for (int j = 0; j < arrayOfAdjacentList.length; j++) {
+                System.out.println("for de dentro: " + j);
 
                 //se a posição estiver vazia, próximo
                 if (arrayOfAdjacentList[j] == null) continue;
@@ -33,11 +35,14 @@ public class Bellman_Ford {
 
                 while (endNode != null) {
                     MinPaths.relax(dg, sourceNode.getVertex(), endNode.getVertex());
+                    System.out.println(endNode);
                     endNode = endNode.getNextNode();
                 }
             }
         }
         //verificação de ciclo negativo
+
+        System.out.println("passou dos for");
 
         //iteração em cada lista de adjacencia
         for (int i = 0; i < arrayOfAdjacentList.length; i++) {
@@ -51,9 +56,15 @@ public class Bellman_Ford {
 
             while (endNode != null) {
 
-                    if (endNode.getVertex().getDistance() > sourceNode.getVertex().getDistance() + dg.getWeightBetween(sourceNode, endNode)){
-                        return false;
-                    }
+                if (endNode.getVertex().getDistance()
+                        > (sourceNode.getVertex().getDistance()
+                        + dg.getWeightBetween(sourceNode.getVertex(),
+                        endNode.getVertex()))){
+
+                    return false;
+                }
+
+                endNode = endNode.getNextNode();
             }
         }
         return true;
